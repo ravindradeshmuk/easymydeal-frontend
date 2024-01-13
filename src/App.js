@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  CssBaseline,
+  Container
+} from '@mui/material';
+import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+// import AdminHomePage from './Admin Dashboard/AdminHomePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <CssBaseline />
+        <Container>
+          <Dashboard />
+          <Routes>
+            {/* ... other routes */}
+            
+            {/* Add this Route for AdminDashboard */}
+            {/* <Route path="/adminhome" element={<AdminHomePage />} /> */}
+
+            {/* ... other routes */}
+          </Routes>
+        </Container>
+      </Router>
+    </>
   );
 }
 

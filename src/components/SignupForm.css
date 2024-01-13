@@ -1,0 +1,36 @@
+/* SignupPage.css */
+.signup-page-container {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    height: 100vh;
+  }
+  
+  .submit-button {
+    margin-top: 20px; /* Reduced padding between buttons */
+    background-color: #f44336; /* Red color for the signup button */
+  }
+  
+  .google-button {
+    margin: 20px; /* Reduced padding between buttons */
+    background-color: #db4437; /* Specific Google red */
+  }
+  
+  .facebook-button {
+    margin: 20px; /* Reduced padding between buttons */
+    background-color: #4267b2; /* Specific Facebook blue */
+  }
+  
+  .login-link {
+    margin-top: 16px; /* Increased padding above the login link if desired */
+  }
+  /* .google-button, .facebook-button {
+    margin-top: 10px;
+  } */
+  
+  /* Add any additional global or specific styles you need */
+  
