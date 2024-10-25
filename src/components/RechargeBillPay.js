@@ -54,9 +54,9 @@ const ServiceName = styled(Typography)({
 const ServicePaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: 'center',
-  boxShadow: theme.shadows[3],
+  boxShadow: theme.shadows[5],
   borderRadius: theme.shape.borderRadius,
-  margin: theme.spacing(1),
+  margin: theme.spacing(2.5),
 }));
 
 const ServicesWrapper = styled(Box)(({ theme }) => ({

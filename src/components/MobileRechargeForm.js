@@ -10,12 +10,16 @@ import image2 from "../images/recharge_image.jpg"
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   margin: theme.spacing(3, 0),
+  display:'flex',
+  flexDirection:'column',
+  gap:10,
+ marginTop:'50px'
 }));
 
 const StyledFormControl = styled(FormControl)({
   width: '100%',
   marginBottom: '20px',
-  margin:"3px"
+  margin:"10px"
 });
 
 const StyledButton = styled(Button)({
@@ -80,7 +84,7 @@ const RechargeForm = () => {
 
   return (
     <Container>
-      <Grid container spacing={3}>
+      <Grid container spacing={5}>
         <Grid item xs={12} md={6}>
           <StyledPaper>
             <Typography variant="h5" gutterBottom>Prepaid Mobile Recharge</Typography>
@@ -90,7 +94,7 @@ const RechargeForm = () => {
                 <FormControlLabel value="postpaid" control={<Radio />} label="Postpaid" />
               </RadioGroup>
             </StyledFormControl>
-            <TextField
+            <TextField 
               label="Enter Mobile Number"
               name="mobileNumber"
               value={formValues.mobileNumber}

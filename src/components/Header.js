@@ -8,7 +8,7 @@ import LogoutIcon from '@mui/icons-material/ExitToApp';
 import styled from '@emotion/styled';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
-
+import Sidebar from './Sidebar'; // Import the Sidebar component
 
 // Styled components
 const StyledAppBar = styled(AppBar)({
@@ -44,12 +44,12 @@ const StyledMenu = styled(Menu)({
   marginTop: '40px',
 });
 
-// Header component
 const Header = () => {
   const [user, setUser] = useState(null);
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isSignupOpen, setSignupOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // State to manage sidebar visibility
   const usernameRef = useRef(null);
 
   useEffect(() => {
@@ -85,85 +85,94 @@ const Header = () => {
     handleMenuClose();
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen((prevOpen) => !prevOpen); // Toggle sidebar state
+  };
+
   return (
-    <StyledAppBar>
-      <StyledToolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <Title variant="h5" noWrap>
-          EasyMyDeal
-        </Title>
-        {user ? (
-          <>
-            <UserName onMouseEnter={handleMenuOpen} ref={usernameRef}>
-              <Avatar sx={{ width: 30, height: 30, marginRight: 1,}}></Avatar>
-              <Typography variant="h6" color="inherit" noWrap>
-                {user.fullName}
-              </Typography>
-            </UserName>
-            <StyledMenu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
-              MenuListProps={{ onMouseLeave: handleMenuClose }}
-            >
-              <MenuItem>
-                <ListItemIcon>
-                  <ProfileIcon />
-                </ListItemIcon>
-                View Profile
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon>
-                  <HistoryIcon />
-                </ListItemIcon>
-                Order History
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon>
-                  <SupportIcon />
-                </ListItemIcon>
-                Inditab Support
-              </MenuItem>
-              <MenuItem onClick={handleLogout}>
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
-            </StyledMenu>
-          </>
-        ) : (
-          <>
-            <Button color="inherit" onClick={handleLoginOpen}>Login</Button>
-            <Button color="inherit" onClick={handleSignupOpen}>Sign up</Button>
-          </>
-        )}
-      </StyledToolbar>
+    <>
+      <StyledAppBar>
+        <StyledToolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleSidebar}>
+            <MenuIcon />
+          </IconButton>
+          <Title variant="h5" noWrap>
+            EasyMyDeal
+          </Title>
+          {user ? (
+            <>
+              <UserName onMouseEnter={handleMenuOpen} ref={usernameRef}>
+                <Avatar sx={{ width: 30, height: 30, marginRight: 1 }}></Avatar>
+                <Typography variant="h6" color="inherit" noWrap>
+                  {user.fullName}
+                </Typography>
+              </UserName>
+              <StyledMenu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                MenuListProps={{ onMouseLeave: handleMenuClose }}
+              >
+                <MenuItem>
+                  <ListItemIcon>
+                    <ProfileIcon />
+                  </ListItemIcon>
+                  View Profile
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <HistoryIcon />
+                  </ListItemIcon>
+                  Order History
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <SupportIcon />
+                  </ListItemIcon>
+                  Inditab Support
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <ListItemIcon>
+                    <LogoutIcon />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </StyledMenu>
+            </>
+          ) : (
+            <>
+              <Button color="inherit" onClick={handleLoginOpen}>Login</Button>
+              <Button color="inherit" onClick={handleSignupOpen}>Sign up</Button>
+            </>
+          )}
+        </StyledToolbar>
 
-      <Dialog open={isLoginOpen} onClose={handleClose} aria-labelledby="login-dialog-title" fullWidth maxWidth="sm">
-        <DialogContent>
-          <LoginForm onLogin={handleLogin} />
-        </DialogContent>
-      </Dialog>
+        <Dialog open={isLoginOpen} onClose={handleClose} aria-labelledby="login-dialog-title" fullWidth maxWidth="sm">
+          <DialogContent>
+            <LoginForm onLogin={handleLogin} />
+          </DialogContent>
+        </Dialog>
 
-      <Dialog open={isSignupOpen} onClose={handleClose} aria-labelledby="signup-dialog-title" fullWidth maxWidth="sm">
-        <DialogContent>
-          <SignupForm />
-        </DialogContent>
-      </Dialog>
-    </StyledAppBar>
+        <Dialog open={isSignupOpen} onClose={handleClose} aria-labelledby="signup-dialog-title" fullWidth maxWidth="sm">
+          <DialogContent>
+            <SignupForm />
+          </DialogContent>
+        </Dialog>
+      </StyledAppBar>
+
+      {/* Conditionally render Sidebar based on sidebarOpen state */}
+      {sidebarOpen && <Sidebar />}
+    </>
   );
 };
 

@@ -75,7 +75,7 @@ const Sidebar = () => {
         </ListItem>
         </StyledLink>
         <Divider />
-        <StyledLink to="/pay-rent">
+        <StyledLink to="/flight-booking">
         <ListItem>
           <ListItemIcon>
             <FlightIcon />
